@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400');
+
+:root {
+    --divsep: 1px solid#111111;
+    --textcolor: #cfcfcf; 
+    --bg: #000000;
+}
+
+html,body { 
+    height: 100%;
+    background-color: var(--bg);
+    color: var(--textcolor);
+    overflow: hidden;
+}
+
+.logo {
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #DDDDDD !important;
+    display:inline-block;
+    -webkit-transform:scale(1.1,1); /* Safari and Chrome */
+    -moz-transform:scale(1.1,1); /* Firefox */
+    -ms-transform:scale(1.1,1); /* IE 9 */
+    -o-transform:scale(1.1,1); /* Opera */
+    transform:scale(1.1,1); /* W3C */
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+a, b {
+    font-family: 'Roboto mono', sans-serif !important;
+}
+
+
+#maindiv {
+    position: absolute;
+    overflow: auto;
+    height: 100%;
+
+    left: 0px;
+    right: 0px;
+}
+
+.navbar-button {
+    margin-right: 30px;
+}
+
+.navbar-link {
+    font-size: 16px; 
+    color: var(--textcolor); 
+    font-weight: bold;
+    font-family: 'Roboto mono', sans-serif; 
+    margin-left: 48px;
+}
+
+#alertPopup {
+    position: absolute;
+    z-index: 2 !important;
+    bottom: 16px;
+    right: 16px;
+}
+
+
+#sidebar-button {
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+
+    margin: 2px;
+}
+
+#sidebar {
+    width: 280px; 
+    height: 100%;
+
+    border-right: var(--divsep); 
+    float: left;
+}
+
+#sidebar-list {
+    margin: -16px;
+}
+
+.alertCard {
+    border: var(--divsep);
+    background-color: var(--bg) !important;
+    border-radius: 0.5em;
+    margin: 8px;
+    width: 400px;
+}
+
+.selectable {
+    display: flex;
+    color: var(--textcolor);
+    background-color: var(--bg);
+
+    width: 100%;
+    height: 38px;
+    
+    align-items:center;
+    justify-content:center;
+    border-bottom: var(--divsep);
+}
+
+
+.selectable:checked, .selectable:hover {
+    background: none;
+    background-color: #222228;
+}
+
+select, select:focus {
+    outline: none;
+    border-style: none;
+    border: transparent;
+    background-color: none;
+}
+
+.option-select {
+    border-radius: 8px;
+    height: 26px;
+}
+
+button {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    font-weight: 500;
+}
+
+input {
+    border-radius: 8px;
+}
+
+input, label {
+    display:block;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--bg); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #666666; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #222228; 
+}
+
+.nav-link {
+    color: var(--textcolor);
+    border-radius: 0 !important;
+}
+
+.nav-link.active {
+    background-color: #333333 !important;
+}
+
+.nav-link:hover {
+    background-color: #333333 !important;
+    color: var(--textcolor);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+}
+
+.separator-line::before, .separator-line::after {
+    border-bottom: 1px solid #666666;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}
