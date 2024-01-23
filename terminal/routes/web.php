@@ -19,6 +19,6 @@ use App\Http\Controllers\ViewCOntroller;
 //     return view('welcome');
 // });
 
-Route::get('/', [ViewCOntroller::class, 'screener']);
-Route::get('/alert', [ViewCOntroller::class, 'alert']);
-Route::get('/overview', [ViewCOntroller::class, 'overview']);
+Route::get('/', [ViewCOntroller::class, 'screener'])->name('screener');
+Route::get('/alert', [ViewCOntroller::class, 'alert'])->name('alert');
+Route::get('/overview', [ViewCOntroller::class, 'overview'])->name('overview');

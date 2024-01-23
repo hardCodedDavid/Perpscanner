@@ -348,17 +348,15 @@ $(document).ready(function() {
 
     get_candles();
 
-    // $.getJSON('/api/screener', function(data) {
-        Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
-            coins[symbol] = to_alias(data, ALIAS_SCREENER);
-        })
-        let filter_option = $('#filter-option').val();
-        let max_val = Math.max(...Object.values(coins).map(v => (((Array.isArray(v[filter_option])) ? v[filter_option][1] : v[filter_option])) ?? 0))
-        let min_val = Math.min(...Object.values(coins).map(v => (((Array.isArray(v[filter_option])) ? v[filter_option][1] : v[filter_option])) ?? 0))
+    Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
+        coins[symbol] = to_alias(data, ALIAS_SCREENER);
+    })
+    let filter_option = $('#filter-option').val();
+    let max_val = Math.max(...Object.values(coins).map(v => (((Array.isArray(v[filter_option])) ? v[filter_option][1] : v[filter_option])) ?? 0))
+    let min_val = Math.min(...Object.values(coins).map(v => (((Array.isArray(v[filter_option])) ? v[filter_option][1] : v[filter_option])) ?? 0))
 
-        $('#filter-range').slider("option", "step", parseFloat((Math.abs(min_val - max_val) / 1000).toPrecision(3)))
-        $('#filter-range').slider("option", "min", -max_val)
-        $('#filter-range').slider("option", "max", -min_val)
-        $('#filter-range').slider("option", "values", [-max_val, -min_val])
-    // });
+    $('#filter-range').slider("option", "step", parseFloat((Math.abs(min_val - max_val) / 1000).toPrecision(3)))
+    $('#filter-range').slider("option", "min", -max_val)
+    $('#filter-range').slider("option", "max", -min_val)
+    $('#filter-range').slider("option", "values", [-max_val, -min_val])
 });

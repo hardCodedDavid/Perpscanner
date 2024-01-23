@@ -183,18 +183,14 @@ function save_columns() {
 }
 
 function update_coins() {
-
-    console.log('Fire!!');
-        // $.getJSON('http://127.0.0.1:8001/api/screener', function(data) {
-            Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
-                if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};
-                Object.entries(to_alias(data, ALIAS_SCREENER)).forEach(([key, value]) => {
-                    coins[symbol][key] = value;
-                })
-            })
-            update_table();
-            console.log('update_coins ✅');
-        // });
+    Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
+        if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};
+        Object.entries(to_alias(data, ALIAS_SCREENER)).forEach(([key, value]) => {
+            coins[symbol][key] = value;
+        })
+    })
+    update_table();
+    console.log('update_coins ✅');
 }
 
 function render_columns() {
@@ -362,41 +358,41 @@ $(document).ready(function(){
         
     })
 
-    // $(document).on('click', '#screener-head', function() {
-    //     if (active_chart) {
-    //         $('#tv-chart').css('top', $('#' + $.escapeSelector(active_chart)).offset().top + $('#maindiv').scrollTop() - 32);
-    //     }
-    // });
+    $(document).on('click', '#screener-head', function() {
+        if (active_chart) {
+            $('#tv-chart').css('top', $('#' + $.escapeSelector(active_chart)).offset().top + $('#maindiv').scrollTop() - 32);
+        }
+    });
     
 
-    // $(document).on('click', '#closeScreenerSettings', function() {
-    //     save_columns();
-    //     draw_table();
-    //     $('#screenerSettings').hide()
-    // });
+    $(document).on('click', '#closeScreenerSettings', function() {
+        save_columns();
+        draw_table();
+        $('#screenerSettings').hide()
+    });
 
-    // $('#update-speed-label').html(get_update_speed())
-    // $('#update-speed').val(get_update_speed())
-    // $(document).on('mousemove', '#update-speed', function() {
-    //     $('#update-speed-label').html($('#update-speed').val())
-    //     return true;
-    // });
-    // $(document).on('change', '#update-speed', function() {
-    //     set_update_speed($(this).val())
-    // });
+    $('#update-speed-label').html(get_update_speed())
+    $('#update-speed').val(get_update_speed())
+    $(document).on('mousemove', '#update-speed', function() {
+        $('#update-speed-label').html($('#update-speed').val())
+        return true;
+    });
+    $(document).on('change', '#update-speed', function() {
+        set_update_speed($(this).val())
+    });
 
-    // $('#use-notional-oi-check').prop('checked', ((get_oi_type() == 1) ? true : false));
-    // $(document).on('change', '#use-notional-oi-check', function() {
-    //     if(this.checked) {
-    //         set_oi_type(1)
-    //     } else {
-    //         set_oi_type(0)
-    //     }
-    // });
+    $('#use-notional-oi-check').prop('checked', ((get_oi_type() == 1) ? true : false));
+    $(document).on('change', '#use-notional-oi-check', function() {
+        if(this.checked) {
+            set_oi_type(1)
+        } else {
+            set_oi_type(0)
+        }
+    });
 
-    // $(document).on('click', '#filter-dropdown-content', function() {
-    //     update_table();
-    // });
+    $(document).on('click', '#filter-dropdown-content', function() {
+        update_table();
+    });
       
     function connect_screener() {
         var ws = new WebSocket('wss://data.orionterminal.com/api/ws/screener');
@@ -428,7 +424,7 @@ $(document).ready(function(){
       
     connect_screener();
     update_coins();
-    // get_triggered_alerts();
-    // setInterval(get_triggered_alerts, 1500);
+    get_triggered_alerts();
+    setInterval(get_triggered_alerts, 1500);
     setInterval(update_coins, 60000);
 });

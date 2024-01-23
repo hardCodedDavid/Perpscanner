@@ -65,8 +65,7 @@ function show_notification(name, message, timestamp, show_time) {
 }
 
 function sendMessage(text) {
-    let token = "6973625542:AAGSpZdaczVmnT5kWcekm34Hcm1YlXsgnlE";
-    // let chatId = "5211241346";
+    let token = telegramToken;
     let chatId = localStorage.getItem('chat_id');
   
       var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
@@ -83,7 +82,7 @@ function sendMessage(text) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", apiUrl + "?" + queryString, true);
       xhr.send();
-  }
+}
 
 function trigger_alert(name, message, sound_file, screener_highlight, notification, symbol, id, telegramAlert) {
     console.log('triggered', alert)
@@ -116,16 +115,14 @@ function trigger_alert(name, message, sound_file, screener_highlight, notificati
         }
     }
 
-    console.log(telegramAlert);
-
     if (telegramAlert) {
         // let msg = `Name: <b>${name}💰</b><br>Symbol: <b>${symbol}👽</b><br>Message: <b>${message}✅<b>`;
-        let msg = `${message}✅`;
+        let msg = `<b>${name}🚀</b> <br> <b>${symbol}💰</b> <br> <b>${message}✅</b>`;
 
         sendMessage(msg);
-        console.log("Fired 💥");
+        console.log("Message Sent 💥");
     } else {
-        console.log("Not Fired ❌");
+        console.log("Not allowed ❌");
     }
 
     append_history(alert)
@@ -216,16 +213,13 @@ $(document).ready(function() {
         };
     }
 
-
-    // $.getJSON('http://127.0.0.1:8001/api/screener', function(data) {
-        Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
-            if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};
-            Object.entries(to_alias(data, ALIAS_SCREENER)).forEach(([key, value]) => {
-                coins[symbol][key] = value;
-            })
-            console.log('update_coins ✅');
+    Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
+        if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};
+        Object.entries(to_alias(data, ALIAS_SCREENER)).forEach(([key, value]) => {
+            coins[symbol][key] = value;
         })
-    // });
+        console.log('update_coins ✅');
+    })
 
     connect_screener();
 });

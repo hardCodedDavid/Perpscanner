@@ -158,6 +158,12 @@ function autocomplete(inp, arr) {
 
 function get_alerts() {
   var alerts = localStorage.getItem('alerts');
+  if (localStorage.getItem('chat_username')) {
+    var username = localStorage.getItem('chat_username').replace(/"/g, '');
+  } else {
+    var username = "";
+  }
+  
 
   if (alerts && JSON.parse(alerts).length > 0) {
     return JSON.parse(alerts).map(alert => (
@@ -172,7 +178,7 @@ function get_alerts() {
         'alertMessage': alert.alertMessage.replaceAll('stdev_', 'volatility_'),
         'telegramAlert': alert.telegramAlert,
         'telegramId': alert.telegramId,
-        'telegramName': alert.telegramName,
+        'telegramName': (alert.telegramName != "" ? alert.telegramName : username ),
       }
     ));
   }
@@ -328,10 +334,12 @@ function render_alerts() {
                 <label class="form-check-label" for="telegramAlert">Telegram Alert</label>
               </div>
               <div style="${((alert.telegramAlert) != '1' ? 'display: none' : '')}" class="form-check-inline telegramAlertShow">
-                <input class="form-control telegramName" id="telegramName" name="telegramName" placeholder="Telegram username" type="text" value="${((alert.telegramName) ? (alert.telegramName) : "")}">
+                <input class="form-control telegramName" id="telegramName" name="telegramName" placeholder="Telegram username" type="text" value="${(alert.telegramName)}">
               </div>
               <button type="submit" class="btn btn-primary form-check-inline" style="float: right;">Save</button>
-
+              <div class="telegramNote">
+                <p style="margin: 23px 0px;" class="telegramNote"><b>Note📝: </b> <strong>Make sure you start by subscribing to the telegram channel <a href="https://t.me/OrionTerminal_bot">@Orion Terminal</a> before saving your username.</strong></p>
+              </div>
         </fieldset>
       </div>
       </form>
@@ -368,12 +376,31 @@ function render_history() {
   });
 }
 
+function deleteWebhookAndRetry(alertData) {
+  let token = telegramToken;
+  
+  fetch('https://api.telegram.org/bot' + token + '/deleteWebhook')
+    .then(response => response.json())
+    .then(() => {
+      // Retry fetching updates after deleting the webhook
+      getTelegramId(alertData);
+    })
+    .catch(error => {
+      console.error('Error deleting webhook:', error);
+    });
+}
+
 function getTelegramId(alertData) {
   const telegramName = alertData.telegramName;
-  fetch('https://api.telegram.org/bot6973625542:AAGSpZdaczVmnT5kWcekm34Hcm1YlXsgnlE/getUpdates')
+  let token = telegramToken;
+
+  fetch('https://api.telegram.org/bot' + token + '/getUpdates')
     .then(response => response.json())
     .then(data => {
-      const matchingUser = data.result.find(result => result.message.from.username === telegramName);
+      if (data.error_code === 409) {
+        return deleteWebhookAndRetry(alertData);
+      }
+      const matchingUser = data.result.find(result => result.message && result.message.from.username === telegramName);
       if (matchingUser) {
         const userId = matchingUser.message.from.id;
         console.log('User ID:', userId);
@@ -466,9 +493,11 @@ $(document).ready(function() {
       if(this.checked) {
         $(this).prop('value', 1);
         $(this).parent().next('.telegramAlertShow').show();
+        $(this).parent().next('.telegramNote').show();
       } else {
         $(this).prop('value', 0);
         $(this).parent().next('.telegramAlertShow').hide();
+        $(this).parent().next('.telegramNote').hide();
       }
     });
 
