@@ -116,8 +116,7 @@ function trigger_alert(name, message, sound_file, screener_highlight, notificati
     }
 
     if (telegramAlert) {
-        // let msg = `Name: <b>${name}💰</b><br>Symbol: <b>${symbol}👽</b><br>Message: <b>${message}✅<b>`;
-        let msg = `<b>${name}🚀</b> <br> <b>${symbol}💰</b> <br> <b>${message}✅</b>`;
+        let msg = `<b>${name}</b>\n\n<b>${message}✅</b>`;
 
         sendMessage(msg);
         console.log("Message Sent 💥");
