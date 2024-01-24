@@ -376,10 +376,10 @@ function render_history() {
   });
 }
 
-function deleteWebhookAndRetry(alertData) {
+async function deleteWebhookAndRetry(alertData) {
   let token = telegramToken;
   
-  fetch('https://api.telegram.org/bot' + token + '/deleteWebhook')
+  await fetch('https://api.telegram.org/bot' + token + '/deleteWebhook')
     .then(response => response.json())
     .then(() => {
       // Retry fetching updates after deleting the webhook
@@ -390,16 +390,16 @@ function deleteWebhookAndRetry(alertData) {
     });
 }
 
-function getTelegramId(alertData) {
+async function getTelegramId(alertData) {
   const telegramName = alertData.telegramName;
   let token = telegramToken;
 
-  fetch('https://api.telegram.org/bot' + token + '/getUpdates')
+  await fetch('https://api.telegram.org/bot' + token + '/getUpdates')
     .then(response => response.json())
     .then(data => {
-      if (data.error_code === 409) {
-        return deleteWebhookAndRetry(alertData);
-      }
+      // if (data.error_code === 409) {
+      //   return deleteWebhookAndRetry(alertData);
+      // }
       const matchingUser = data.result.find(result => result.message && result.message.from.username === telegramName);
       if (matchingUser) {
         const userId = matchingUser.message.from.id;
