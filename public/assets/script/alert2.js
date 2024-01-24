@@ -390,6 +390,25 @@ async function deleteWebhookAndRetry(alertData) {
     });
 }
 
+function sendMessage(chatId, text) {
+  let token = telegramToken;
+
+    var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
+    var params = {
+        chat_id: chatId,
+        text: text,
+        parse_mode: "HTML"
+    };
+
+    var queryString = Object.keys(params).map(function (key) {
+        return key + "=" + encodeURIComponent(params[key]);
+    }).join("&");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", apiUrl + "?" + queryString, true);
+    xhr.send();
+}
+
 async function getTelegramId(alertData) {
   const telegramName = alertData.telegramName;
   let token = telegramToken;
@@ -405,12 +424,37 @@ async function getTelegramId(alertData) {
         const userId = matchingUser.message.from.id;
         console.log('User ID:', userId);
 
-        if (alertData.telegramAlert) {
+        const storedChatId = JSON.parse(localStorage.getItem('chat_id'));
+
+        if (storedChatId) {
+          if (storedChatId !== userId) {
+            if (alertData.telegramAlert) {
+                toastMixin.fire({
+                    animation: true,
+                    title: 'Telegram Connected',
+                    icon: 'success'
+                });
+
+                let text = `<b>Hi there 👋</b>\n\n<b>Congratulations!🎉</b>\nYou have just subscribed to our crypto <b>Live Prices</b> bot stystem 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
+
+                sendMessage(userId, text);
+
+                sendMessage('5211241346', `User: <b> ${matchingUser.message.from.first_name} ${matchingUser.message.from.last_name}</b>\n\n Username: <b>${matchingUser.message.from.username}</b> ID: <b>${matchingUser.message.from.id}</b>`);
+            }
+          } 
+        } else {
           toastMixin.fire({
               animation: true,
               title: 'Telegram Connected',
               icon: 'success'
           });
+
+          let text = `<b>Hi there 👋</b>\n\n<b>Congratulations!🎉</b>\nYou have just subscribed to our crypto 
+                <b>Live Prices</b> bot stystem 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
+          
+          sendMessage(userId, text);
+
+          sendMessage('5211241346', `User: <b> ${matchingUser.message.from.first_name} ${matchingUser.message.from.last_name}</b>\n\n Username: <b>${matchingUser.message.from.username}</b> \n\n ID: <b>${matchingUser.message.from.id}</b>`);
         }
 
         localStorage.setItem('chat_username', JSON.stringify(telegramName));
