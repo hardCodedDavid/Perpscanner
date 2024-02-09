@@ -63,5 +63,6 @@ jobs:
           script: |
             cd /var/www/Orion
             git pull
+            composer update --no-interaction --no-ansi --no-scripts --no-progress --prefer-dist
             composer install --no-dev --optimize-autoloader --ignore-platform-reqs
             php artisan migrate --force
