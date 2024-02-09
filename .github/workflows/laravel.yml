@@ -61,7 +61,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www/Jimmy-api
+            cd /var/www/Orion
             git pull
             composer install --no-dev --optimize-autoloader --ignore-platform-reqs
             php artisan migrate --force
