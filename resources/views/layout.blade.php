@@ -12,7 +12,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light" style="height: 56px; border-bottom: var(--divsep); white-space: nowrap;">
     <div style="left: 16px; position: absolute;">
-    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 48px; color: var(--textcolor);">Perpscanner</a>
+    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 48px; color: var(--textcolor);">Orion</a>
     <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 16px; color: var(--textcolor); margin-left: -8px;"> Data</a>
     </div>
     <div style="float: left; margin-left: 220px; position: absolute;">
