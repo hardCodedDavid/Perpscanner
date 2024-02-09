@@ -12,7 +12,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light" style="height: 56px; border-bottom: var(--divsep); white-space: nowrap;">
     <div style="left: 16px; position: absolute;">
-    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 48px; color: var(--textcolor);">Θrion</a>
+    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 48px; color: var(--textcolor);">Tr8d3r</a>
     <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 16px; color: var(--textcolor); margin-left: -8px;"> Data</a>
     </div>
     <div style="float: left; margin-left: 220px; position: absolute;">
@@ -20,9 +20,9 @@
     <a href="{{ route('alert') }}" class="navbar-link">Alerts</a>
     <a href="{{ route('overview') }}" class="navbar-link">Charts</a>
     <!-- <a onclick="window.open('https://docs.orionterminal.com/')" href="#" class="navbar-link">CLI</a> -->
-    <b style="position: relative; right: 20px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">&nbsp;NEW&nbsp;</b>
+    <!-- <b style="position: relative; right: 20px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">&nbsp;NEW&nbsp;</b>
     <a onclick="window.open('https://discord.com/invite/ffw7SyBW4w')" href="#" class="navbar-link">Discord</a>
-    <a onclick="window.open('https://twitter.com/OrionTerminal')" href="#" class="navbar-link">Twitter</a>
+    <a onclick="window.open('https://twitter.com/OrionTerminal')" href="#" class="navbar-link">Twitter</a> -->
     
     <a class="navbar-link" item_category="reflink" style="color: #f0b90b;" href="#" onclick="window.open('https://partner.bybit.com/b/orionterminal')">Trade on Bybit</a>
     <b style="position: relative; right: 72px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">10% OFF FEES</b>

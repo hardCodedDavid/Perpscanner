@@ -1,0 +1,60 @@
+{
+    "EXCHANGES": {
+        "binanceusdm": {
+            "name": "Binance-futures",
+            "quote_currencies": [
+                "USDT",
+                "BUSD"
+            ]
+        }
+    },
+    "ALIAS_SCREENER": {
+        "0": "change_15m",
+        "1": "change_1d",
+        "2": "change_1h",
+        "3": "change_5m",
+        "4": "change_8h",
+        "5": "funding_rate",
+        "6": "OI_change_15m",
+        "7": "OI_change_1d",
+        "8": "OI_change_1h",
+        "9": "OI_change_8h",
+        "10": "openinterest",
+        "11": "price",
+        "12": "volatility_15m",
+        "13": "volatility_1h",
+        "14": "volatility_5m",
+        "15": "ticks_15m",
+        "16": "ticks_1h",
+        "17": "ticks_5m",
+        "18": "vdelta_15m",
+        "19": "vdelta_1d",
+        "20": "vdelta_1h",
+        "21": "vdelta_5m",
+        "22": "vdelta_8h",
+        "23": "volume_15m",
+        "24": "volume_1d",
+        "25": "volume_1h",
+        "26": "volume_5m",
+        "27": "volume_8h",
+        "40": "marketcap",
+        "41": "OI/MC",
+        "42": "BTC_correlation_1d",
+        "43": "ETH_correlation_1d",
+        "44": "BTC_correlation_3d",
+        "45": "ETH_correlation_3d",
+        "46": "BTC_beta_1d",
+        "47": "ETH_beta_1d",
+        "48": "BTC_beta_3d",
+        "49": "ETH_beta_3d",
+        "50": "OI_change_5m"
+    },
+    "CATEGORIES_SCREENER": {
+        "change": "Price change",
+        "volatility": "Volatility",
+        "volume": "Volume",
+        "vdelta": "Volume",
+        "ticks": "Ticks",
+        "OI_": "OI Change"
+    }
+}
