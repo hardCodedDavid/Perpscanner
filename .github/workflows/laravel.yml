@@ -1,4 +1,4 @@
-name: CI
+name: Tr8d3r CI
 
 on:
   push:
@@ -62,7 +62,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/www/Orion
-            git pull
-            composer update --no-interaction --no-ansi --no-scripts --no-progress --prefer-dist
-            composer install --no-dev --optimize-autoloader --ignore-platform-reqs
-            php artisan migrate --force
+#            git pull
+#            composer update --no-interaction --no-ansi --no-scripts --no-progress --prefer-dist
+#            composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+#            php artisan migrate --force
