@@ -52,7 +52,7 @@ a, b {
     color: var(--textcolor); 
     font-weight: bold;
     font-family: 'Roboto mono', sans-serif; 
-    margin-left: 48px;
+    margin-left: 100px;
 }
 
 #alertPopup {

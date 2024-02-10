@@ -10,9 +10,9 @@
 
     @yield('script')
     
-    <nav class="navbar navbar-expand-lg navbar-light" style="height: 56px; border-bottom: var(--divsep); white-space: nowrap;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="height: 58px; border-bottom: var(--divsep); white-space: nowrap;">
     <div style="left: 16px; position: absolute;">
-    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 35px; color: var(--textcolor);margin-right: 20px;">Perpscanner</a>
+    <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 30px; color: var(--textcolor);margin-right: 20px;">Perpscanner <br> <span style="font-size: 10px;float: inline-end; letter-spacing: 6;"> by CRYPTO.ERKE </span></a>
     <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 16px; color: var(--textcolor); margin-left: -8px;"></a>
     </div>
     <div style="float: left; margin-left: 220px; position: absolute;">
