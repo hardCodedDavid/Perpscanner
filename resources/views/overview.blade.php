@@ -27,7 +27,7 @@
 
     @endsection 
 
-<title>Θrion Data</title>
+<title>Chart | by crypto.erke</title>
 <script src="{{ asset('assets/script/uPlot.min.js') }}"></script>
 <script type="module" src="{{ asset('assets/script/overview.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('assets/style/overview.css') }}" />

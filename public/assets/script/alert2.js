@@ -358,6 +358,18 @@ function get_history() {
   return [];
 }
 
+function formatDate(date) {
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = String(date.getHours() % 12 || 12).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
+
+  return `${month}-${day}-${year}  ${hours}:${minutes}:${seconds} ${amPm}`;
+}
+
 function render_history() {
   $('#alertHistory').html('')
   get_history().slice(0, 20).forEach(function(triggered) {
@@ -365,7 +377,7 @@ function render_history() {
       <div class="card text-white bg-dark mb-3">
         <div class="card-header">
           <a style="color: #22BB22;">${triggered.name}</a>
-          <a style="float: right;">${(new Date(triggered.timestamp)).toISOString().replace('T', ' ').replace('Z', '')}</a>
+          <a style="float: right;">${formatDate(new Date(triggered.timestamp))}</a>
         </div>
 
         <div class="card-body">

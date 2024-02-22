@@ -24,8 +24,8 @@
     <a onclick="window.open('https://discord.com/invite/ffw7SyBW4w')" href="#" class="navbar-link">Discord</a>
     <a onclick="window.open('https://twitter.com/OrionTerminal')" href="#" class="navbar-link">Twitter</a> -->
     
-    <a class="navbar-link" item_category="reflink" style="color: #f0b90b;" href="#" onclick="window.open('https://partner.bybit.com/b/orionterminal')">Trade on Bybit</a>
-    <b style="position: relative; right: 72px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">10% OFF FEES</b>
+    <!-- <a class="navbar-link" item_category="reflink" style="color: #f0b90b;" href="#" onclick="window.open('https://partner.bybit.com/b/orionterminal')">Trade on Bybit</a>
+    <b style="position: relative; right: 72px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">10% OFF FEES</b> -->
     </div>
     <div style="position: absolute; right: 0; height: 100%; background-color: var(--bg);">
     <div style="margin-top: 12px; margin-left: 16px;">

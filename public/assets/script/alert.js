@@ -45,6 +45,18 @@ function get_history() {
     return [];
 }
 
+function formatDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours() % 12 || 12).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
+  
+    return `${month}-${day}-${year}  ${hours}:${minutes}:${seconds} ${amPm}`;
+  }
+
 function show_notification(name, message, timestamp, show_time) {
     $('#alertPopup').append(`
         <div class="card text-white bg-dark mb-3 alertCard" id="${timestamp}">
@@ -53,7 +65,7 @@ function show_notification(name, message, timestamp, show_time) {
             <svg onClick="$('#' + ${timestamp}).remove()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" style="float: right; margin-left: 8px; margin-top: 4px;">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
             </svg>
-            <a style="float: right;">${(new Date(timestamp)).toISOString().split('T')[1].replace('Z', '')}</a>
+            <a style="float: right;">${formatDate(new Date(triggered))}</a>
             </div>
     
             <div class="card-body">
