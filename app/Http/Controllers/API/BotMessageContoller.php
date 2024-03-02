@@ -103,8 +103,8 @@ class BotMessageContoller extends Controller
         // return $webhookData->json();
 
         $data = $request->getContent();
-        $logFile = storage_path('app/webHookData.json');
-        file_put_contents($logFile, $data.PHP_EOL, FILE_APPEND);
+        // $logFile = storage_path('app/webHookData.json');
+        // file_put_contents($logFile, $data.PHP_EOL, FILE_APPEND);
 
         return $data;
 
