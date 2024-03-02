@@ -103,10 +103,27 @@ class BotMessageContoller extends Controller
         // return $webhookData->json();
 
         $data = $request->getContent();
-        // $logFile = storage_path('app/webHookData.json');
-        // file_put_contents($logFile, $data.PHP_EOL, FILE_APPEND);
+        $getData = json_decode($data, true);
+        // $userMessage = $getData['message']['text'];
 
-        return $data;
+        $userID = '5139010535';
+        $botMessage = "Test Check✅";
+
+        $token = env('TELEGRAM_TOKEN');
+        // $chatId = $request->input('chat_id');
+        $params = [
+            'chat_id' => $userID,
+            'text' => $botMessage,
+            'parse_mode' => 'HTML'
+        ];
+
+        $apiUrl = "https://api.telegram.org/bot" . $token . "/sendMessage";
+
+        $response = Http::get($apiUrl, $params);
+
+        return $response->body();
+
+        // return $data;
 
         // $getData = json_decode($data, true);
         // $userID = $getData['message']['from']['id'];
