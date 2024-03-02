@@ -51,7 +51,7 @@ class BotMessageContoller extends Controller
     {
         $BOT_TOKEN = env('TELEGRAM_TOKEN');
         
-        $webHookURL = "https://coded.vantagehorizon.com/";
+        // $webHookURL = "https://coded.vantagehorizon.com/";
         $webHookURL = "https://perpscanner.com/api/set/webhook/data";
 
         $api = "https://api.telegram.org/bot{$BOT_TOKEN}/setWebhook?url={$webHookURL}";
@@ -74,31 +74,67 @@ class BotMessageContoller extends Controller
 
     public function setWebhookData()
     {
+        $BOT_TOKEN = env('TELEGRAM_TOKEN');
+        
+        // $data = file_get_contents('php://input');
+        // $decodedData = json_decode($data, true);
+        // $messageData = $decodedData['message'];
+
+        // $webhookData = new Webhooks();
+
+        // $webhookData->update_id = $decodedData['update_id'];
+        // $webhookData->message_id = $messageData['message_id'];
+        // $webhookData->from_id = $messageData['from']['id'];
+        // $webhookData->from_is_bot = $messageData['from']['is_bot'];
+        // $webhookData->from_first_name = $messageData['from']['first_name'];
+        // $webhookData->from_last_name = $messageData['from']['last_name'] ?? null;
+        // $webhookData->from_username = $messageData['from']['username'] ?? null;
+        // $webhookData->from_language_code = $messageData['from']['language_code'] ?? null;
+        // $webhookData->chat_id = $messageData['chat']['id'];
+        // $webhookData->chat_first_name = $messageData['chat']['first_name'];
+        // $webhookData->chat_last_name = $messageData['chat']['last_name'] ?? null;
+        // $webhookData->chat_username = $messageData['chat']['username'] ?? null;
+        // $webhookData->chat_type = $messageData['chat']['type'];
+        // $webhookData->date = $messageData['date'];
+        // $webhookData->text = $messageData['text'];
+
+        // $webhookData->save();
+
+        // return $webhookData->json();
+
         $data = file_get_contents('php://input');
-        $decodedData = json_decode($data, true);
-        $messageData = $decodedData['message'];
+        $logFile = 'webHookData.json';
+        $log = fopen($logFile, 'a');
+        fwrite($log, $data);
+        fclose($log);
 
-        $webhookData = new Webhooks();
+        $getData = json_decode($data, true);
+        $userID = $getData['message']['from']['id'];
+        $userMessage = $getData['message']['text'];
 
-        $webhookData->update_id = $decodedData['update_id'];
-        $webhookData->message_id = $messageData['message_id'];
-        $webhookData->from_id = $messageData['from']['id'];
-        $webhookData->from_is_bot = $messageData['from']['is_bot'];
-        $webhookData->from_first_name = $messageData['from']['first_name'];
-        $webhookData->from_last_name = $messageData['from']['last_name'] ?? null;
-        $webhookData->from_username = $messageData['from']['username'] ?? null;
-        $webhookData->from_language_code = $messageData['from']['language_code'] ?? null;
-        $webhookData->chat_id = $messageData['chat']['id'];
-        $webhookData->chat_first_name = $messageData['chat']['first_name'];
-        $webhookData->chat_last_name = $messageData['chat']['last_name'] ?? null;
-        $webhookData->chat_username = $messageData['chat']['username'] ?? null;
-        $webhookData->chat_type = $messageData['chat']['type'];
-        $webhookData->date = $messageData['date'];
-        $webhookData->text = $messageData['text'];
+        if ($userMessage == '/start' || $userMessage == 'Hello') {
+            $botMessage = "Welcome Dawg!🚀";
+        } else {
+            $botMessage = "Hoops 🤔 you are not subscribed to this bot!";
+        }
 
-        $webhookData->save();
+        $params = array(
+            "chat_id" => $userID,
+            "text" => $botMessage,
+            "parse_mode" => 'html'
+        );
 
-        return $webhookData->json();
+        $api = "https://api.telegram.org/bot{$BOT_TOKEN}/sendMessage";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api);
+        curl_setopt($ch, CURLOPT_POST, count($params));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        echo $result;
     }
 
     public function fetchWebhookData()
