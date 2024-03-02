@@ -424,7 +424,6 @@ function sendMessage(chatId, text) {
 async function getTelegramId(alertData) {
   const telegramName = alertData.telegramName;
 
-  // Make a request to check if the username exists in the database
   const response = await fetch(`/api/check/username?username=${telegramName}`);
   const data = await response.json();
 
