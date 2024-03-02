@@ -154,7 +154,7 @@ class BotMessageContoller extends Controller
 
         $webhookData->update_id = $getData['update_id'];
         $webhookData->message_id = $getData['message']['message_id'];
-        $webhookData->from_id = $getData['message']['from_id'];
+        $webhookData->from_id = $getData['message']['from']['id'];
         $webhookData->from_is_bot = false;
         $webhookData->from_first_name = $getData['message']['from']['first_name'];
         $webhookData->from_last_name = $getData['message']['from']['last_name'] ?? null;
