@@ -55,7 +55,7 @@ function formatDate(date) {
     const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
   
     return `${month}-${day}-${year}  ${hours}:${minutes}:${seconds} ${amPm}`;
-  }
+}
 
 function show_notification(name, message, timestamp, show_time) {
     $('#alertPopup').append(`
@@ -65,7 +65,7 @@ function show_notification(name, message, timestamp, show_time) {
             <svg onClick="$('#' + ${timestamp}).remove()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" style="float: right; margin-left: 8px; margin-top: 4px;">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
             </svg>
-            <a style="float: right;">${formatDate(new Date(triggered))}</a>
+            <a style="float: right;">${formatDate(new Date(timestamp))}</a>
             </div>
     
             <div class="card-body">
@@ -80,7 +80,7 @@ function sendMessage(text) {
     let token = telegramToken;
     let chatId = localStorage.getItem('chat_id');
   
-      var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
+      var apiUrl = "/api/message/send";
       var params = {
           chat_id: chatId,
           text: text,
