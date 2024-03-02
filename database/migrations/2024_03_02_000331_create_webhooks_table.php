@@ -13,19 +13,10 @@ return new class extends Migration
     {
         Schema::create('webhooks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('update_id');
-            $table->bigInteger('message_id');
-            $table->bigInteger('from_id');
-            $table->boolean('from_is_bot');
-            $table->string('from_first_name');
-            $table->string('from_last_name')->nullable();
-            $table->string('from_username')->nullable();
-            $table->string('from_language_code')->nullable();
-            $table->bigInteger('chat_id');
-            $table->string('chat_first_name');
-            $table->string('chat_last_name')->nullable();
-            $table->string('chat_username')->nullable();
-            $table->string('chat_type');
+            $table->bigInteger('user_id');
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('username')->nullable();;
             $table->bigInteger('date');
             $table->text('text');
             $table->timestamps();
