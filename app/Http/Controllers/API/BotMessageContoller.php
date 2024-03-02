@@ -103,7 +103,12 @@ class BotMessageContoller extends Controller
         $webhookData = Webhooks::where('username', $username)->first();
 
         if ($webhookData) {
-            return response()->json(['exists' => true]);
+            return response()->json(
+                [
+                    'exists' => true,
+                    'id' => $webhookData->user_id
+                ]
+            );
         } else {
             return response()->json(['exists' => false]);
         }

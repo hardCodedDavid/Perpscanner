@@ -423,38 +423,32 @@ function sendMessage(chatId, text) {
 
 async function getTelegramId(alertData) {
   const telegramName = alertData.telegramName;
-  let token = telegramToken;
 
-  await fetch('https://api.telegram.org/bot' + token + '/getUpdates')
-    .then(response => response.json())
-    .then(data => {
-      // if (data.error_code === 409) {
-      //   return deleteWebhookAndRetry(alertData);
-      // }
-      const matchingUser = data.result.find(result => result.message && result.message.from.username === telegramName);
-      if (matchingUser) {
-        const userId = matchingUser.message.from.id;
-        console.log('User ID:', userId);
+  // Make a request to check if the username exists in the database
+  const response = await fetch(`/api/check/username?username=${telegramName}`);
+  const data = await response.json();
 
-        const storedChatId = JSON.parse(localStorage.getItem('chat_id'));
+  if (data.exists) {
+      const userId = data.id;
+      console.log('User ID:', userId);
 
-        if (storedChatId) {
-          if (storedChatId !== userId) {
-            if (alertData.telegramAlert) {
-                toastMixin.fire({
-                    animation: true,
-                    title: 'Telegram Connected',
-                    icon: 'success'
-                });
+      const storedChatId = JSON.parse(localStorage.getItem('chat_id'));
 
-                let text = `<b>Hi there 👋</b>\n\n<b>Congratulations!🎉</b>\nYou have just subscribed to our crypto <b>Live Prices</b> bot stystem 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
+      if (storedChatId && storedChatId !== userId) {
+          if (alertData.telegramAlert) {
+              toastMixin.fire({
+                  animation: true,
+                  title: 'Telegram Connected',
+                  icon: 'success'
+              });
 
-                sendMessage(userId, text);
+              let text = `<b>Hi there 👋</b>\n\n<b>Congratulations!🎉</b>\nYou have just subscribed to our crypto <b>Live Prices</b> bot system 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
 
-                sendMessage('5211241346', `User: <b> ${matchingUser.message.from.first_name} ${matchingUser.message.from.last_name}</b>\n\n Username: <b>${matchingUser.message.from.username}</b> ID: <b>${matchingUser.message.from.id}</b>`);
-            }
-          } 
-        } else {
+              sendMessage(userId, text);
+
+              sendMessage('5211241346', `User: <b>${telegramName}</b> ID: <b>${userId}</b>`);
+          }
+      } else {
           toastMixin.fire({
               animation: true,
               title: 'Telegram Connected',
@@ -462,28 +456,23 @@ async function getTelegramId(alertData) {
           });
 
           let text = `<b>Hi there 👋</b>\n\n<b>Congratulations!🎉</b>\nYou have just subscribed to our crypto 
-                <b>Live Prices</b> bot stystem 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
+              <b>Live Prices</b> bot system 🤖 on <a href="#">Orin Data</a>\n\n<b>Good Luck 👍</b>`;
           
           sendMessage(userId, text);
 
-          sendMessage('5211241346', `User: <b> ${matchingUser.message.from.first_name} ${matchingUser.message.from.last_name}</b>\n\n Username: <b>${matchingUser.message.from.username}</b> \n\n ID: <b>${matchingUser.message.from.id}</b>`);
-        }
-
-        localStorage.setItem('chat_username', JSON.stringify(telegramName));
-        localStorage.setItem('chat_id', JSON.stringify(userId));
-
-      } else {
-        console.log('Username: "' + telegramName + '" not found in Telegram response');
-        toastMixin.fire({
-          animation: true,
-          title: 'Invalid User! Send a message to telegram bot and try again.',
-          icon: 'error'
-        });
+          sendMessage('5211241346', `User: <b>${telegramName}</b> ID: <b>${userId}</b>`);
       }
-    })
-    .catch(error => {
-      console.error('Error fetching Telegram updates:', error);
-    });
+
+      localStorage.setItem('chat_username', JSON.stringify(telegramName));
+      localStorage.setItem('chat_id', JSON.stringify(userId));
+  } else {
+      console.log('Username: "' + telegramName + '" not found in database');
+      toastMixin.fire({
+          animation: true,
+          title: 'Invalid User! Send a message to the telegram bot and try again.',
+          icon: 'error'
+      });
+  }
 }
 
 

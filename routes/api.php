@@ -34,4 +34,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/set/webhook', [BotMessageContoller::class, 'setWebhook']);
 
     Route::post('/set/webhook/data', [BotMessageContoller::class, 'setWebhookData']);
+
+    Route::get('/check/username', [BotMessageContoller::class, 'checkUsername']); //Get Username Status
+
 });
