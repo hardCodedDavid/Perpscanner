@@ -103,10 +103,10 @@ class BotMessageContoller extends Controller
         // return $webhookData->json();
 
         $data = file_get_contents('php://input');
-        $logFile = '/var/www/Orion/app/Http/Controllers/API/webHookData.json';
-        $log = fopen($logFile, 'a');
-        fwrite($log, $data);
-        fclose($log);
+        // $logFile = '/var/www/Orion/app/Http/Controllers/API/webHookData.json';
+        // $log = fopen($logFile, 'a');
+        // fwrite($log, $data);
+        // fclose($log);
 
         $getData = json_decode($data, true);
         $userID = $getData['message']['from']['id'];
