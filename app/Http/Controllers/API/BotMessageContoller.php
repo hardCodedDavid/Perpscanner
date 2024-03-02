@@ -75,7 +75,7 @@ class BotMessageContoller extends Controller
     public function setWebhookData()
     {
         $BOT_TOKEN = env('TELEGRAM_TOKEN');
-        
+
         // $data = file_get_contents('php://input');
         // $decodedData = json_decode($data, true);
         // $messageData = $decodedData['message'];
@@ -103,7 +103,7 @@ class BotMessageContoller extends Controller
         // return $webhookData->json();
 
         $data = file_get_contents('php://input');
-        $logFile = 'webHookData.json';
+        $logFile = '/var/www/Orion/app/Http/Controllers/API/webHookData.json';
         $log = fopen($logFile, 'a');
         fwrite($log, $data);
         fclose($log);
