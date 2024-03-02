@@ -51,7 +51,8 @@ class BotMessageContoller extends Controller
     {
         $BOT_TOKEN = env('TELEGRAM_TOKEN');
         
-        $webHookURL = "https://perpscanner.com/api/set/webhook";
+        $webHookURL = "https://coded.vantagehorizon.com/";
+        $webHookURL = "https://perpscanner.com/api/set/webhook/data";
 
         $api = "https://api.telegram.org/bot{$BOT_TOKEN}/setWebhook?url={$webHookURL}";
 
@@ -76,27 +77,28 @@ class BotMessageContoller extends Controller
         $data = file_get_contents('php://input');
         $decodedData = json_decode($data, true);
         $messageData = $decodedData['message'];
-        $data = new Webhooks();
 
-        $data->update_id = $decodedData['update_id'];
-        $data->message_id = $messageData['message_id'];
-        $data->from_id = $messageData['from']['id'];
-        $data->from_is_bot = $messageData['from']['is_bot'];
-        $data->from_first_name = $messageData['from']['first_name'];
-        $data->from_last_name = $messageData['from']['last_name'] ?? null;
-        $data->from_username = $messageData['from']['username'] ?? null;
-        $data->from_language_code = $messageData['from']['language_code'] ?? null;
-        $data->chat_id = $messageData['chat']['id'];
-        $data->chat_first_name = $messageData['chat']['first_name'];
-        $data->chat_last_name = $messageData['chat']['last_name'] ?? null;
-        $data->chat_username = $messageData['chat']['username'] ?? null;
-        $data->chat_type = $messageData['chat']['type'];
-        $data->date = $messageData['date'];
-        $data->text = $messageData['text'];
+        $webhookData = new Webhooks();
 
-        $data->save();
+        $webhookData->update_id = $decodedData['update_id'];
+        $webhookData->message_id = $messageData['message_id'];
+        $webhookData->from_id = $messageData['from']['id'];
+        $webhookData->from_is_bot = $messageData['from']['is_bot'];
+        $webhookData->from_first_name = $messageData['from']['first_name'];
+        $webhookData->from_last_name = $messageData['from']['last_name'] ?? null;
+        $webhookData->from_username = $messageData['from']['username'] ?? null;
+        $webhookData->from_language_code = $messageData['from']['language_code'] ?? null;
+        $webhookData->chat_id = $messageData['chat']['id'];
+        $webhookData->chat_first_name = $messageData['chat']['first_name'];
+        $webhookData->chat_last_name = $messageData['chat']['last_name'] ?? null;
+        $webhookData->chat_username = $messageData['chat']['username'] ?? null;
+        $webhookData->chat_type = $messageData['chat']['type'];
+        $webhookData->date = $messageData['date'];
+        $webhookData->text = $messageData['text'];
 
-        return $data->json();
+        $webhookData->save();
+
+        return $webhookData->json();
     }
 
     public function fetchWebhookData()
