@@ -166,7 +166,7 @@ class BotMessageContoller extends Controller
         $webhookData->chat_username = $messageData['chat']['username'] ?? null;
         $webhookData->chat_type = 'private';
         $webhookData->date = '10299293';
-        $webhookData->text = 'Hello world!';
+        $webhookData->text = $userMessage;
 
         $webhookData->save();
 
