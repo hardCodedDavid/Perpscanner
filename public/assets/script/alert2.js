@@ -433,7 +433,8 @@ async function getTelegramId(alertData) {
 
       const storedChatId = JSON.parse(localStorage.getItem('chat_id'));
 
-      if (storedChatId && storedChatId !== userId) {
+      if (storedChatId) {
+        if (storedChatId !== userId) {
           if (alertData.telegramAlert) {
               toastMixin.fire({
                   animation: true,
@@ -447,6 +448,9 @@ async function getTelegramId(alertData) {
 
               sendMessage('5211241346', `User: <b>${telegramName}</b> ID: <b>${userId}</b>`);
           }
+        } else {
+          console.log('Exist!');
+        }
       } else {
           toastMixin.fire({
               animation: true,
