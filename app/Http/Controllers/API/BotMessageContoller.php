@@ -162,9 +162,9 @@ class BotMessageContoller extends Controller
         $webhookData->from_language_code = $messageData['from']['language_code'] ?? null;
         $webhookData->chat_id = '10299293';
         $webhookData->chat_first_name = 'nill';
-        $webhookData->chat_last_name = $messageData['chat']['last_name'] ?? null;
-        $webhookData->chat_username = $messageData['chat']['username'] ?? null;
-        $webhookData->chat_type = 'private';
+        $webhookData->chat_last_name = $getData['message']['chat']['last_name'] ?? null;
+        $webhookData->chat_username = $getData['message']['chat']['username'] ?? null;
+        $webhookData->chat_type = $getData['message']['chat']['type'];
         $webhookData->date = $getData['message']['date'];
         $webhookData->text = $getData['message']['text'];
 
