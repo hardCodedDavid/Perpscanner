@@ -101,16 +101,20 @@ class BotMessageContoller extends Controller
         // $webhookData->save();
 
         // return $webhookData->json();
+        $token = env('TELEGRAM_TOKEN');
 
         $data = $request->getContent();
         $getData = json_decode($data, true);
-        // $userMessage = $getData['message']['text'];
 
-        $userID = '5139010535';
-        $botMessage = "Test Check✅";
+        $userID = $getData['message']['from']['id'];
+        $userMessage = $getData['message']['text'];
 
-        $token = env('TELEGRAM_TOKEN');
-        // $chatId = $request->input('chat_id');
+        if ($userMessage == '/start' || $userMessage == 'Hello') {
+            $botMessage = "Welcome Dawg!🚀";
+        } else {
+            $botMessage = "Hoops 🤔 you are not subscribed to this bot!";
+        }
+        
         $params = [
             'chat_id' => $userID,
             'text' => $botMessage,
