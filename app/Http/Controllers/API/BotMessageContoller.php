@@ -127,27 +127,27 @@ class BotMessageContoller extends Controller
 
         $response = Http::get($apiUrl, $params);
 
-        $webhookData = new Webhooks();
+        // $webhookData = new Webhooks();
 
-        $webhookData->update_id = $getData['update_id'];
-        $webhookData->message_id = $userMsg['message_id'];
-        $webhookData->from_id = $userMsg['from']['id'];
-        $webhookData->from_is_bot = $userMsg['from']['is_bot'];
-        $webhookData->from_first_name = $userMsg['from']['first_name'];
-        $webhookData->from_last_name = $userMsg['from']['last_name'] ?? null;
-        $webhookData->from_username = $userMsg['from']['username'] ?? null;
-        $webhookData->from_language_code = $userMsg['from']['language_code'] ?? null;
-        $webhookData->chat_id = $userMsg['chat']['id'];
-        $webhookData->chat_first_name = $userMsg['chat']['first_name'];
-        $webhookData->chat_last_name = $userMsg['chat']['last_name'] ?? null;
-        $webhookData->chat_username = $userMsg['chat']['username'] ?? null;
-        $webhookData->chat_type = $userMsg['chat']['type'];
-        $webhookData->date = $userMsg['date'];
-        $webhookData->text = $userMsg['text'];
+        // $webhookData->update_id = $getData['update_id'];
+        // $webhookData->message_id = $userMsg['message_id'];
+        // $webhookData->from_id = $userMsg['from']['id'];
+        // $webhookData->from_is_bot = $userMsg['from']['is_bot'];
+        // $webhookData->from_first_name = $userMsg['from']['first_name'];
+        // $webhookData->from_last_name = $userMsg['from']['last_name'] ?? null;
+        // $webhookData->from_username = $userMsg['from']['username'] ?? null;
+        // $webhookData->from_language_code = $userMsg['from']['language_code'] ?? null;
+        // $webhookData->chat_id = $userMsg['chat']['id'];
+        // $webhookData->chat_first_name = $userMsg['chat']['first_name'];
+        // $webhookData->chat_last_name = $userMsg['chat']['last_name'] ?? null;
+        // $webhookData->chat_username = $userMsg['chat']['username'] ?? null;
+        // $webhookData->chat_type = $userMsg['chat']['type'];
+        // $webhookData->date = $userMsg['date'];
+        // $webhookData->text = $userMsg['text'];
 
-        $webhookData->save();
+        // $webhookData->save();
 
-        return $response;
+        // return $response;
 
         // $getData = json_decode($data, true);
         // $userID = $getData['message']['from']['id'];
