@@ -72,9 +72,9 @@ class BotMessageContoller extends Controller
         return $res;
     }
 
-    public function setWebhookData()
+    public function setWebhookData(Request $request)
     {
-        $BOT_TOKEN = env('TELEGRAM_TOKEN');
+        // $BOT_TOKEN = env('TELEGRAM_TOKEN');
 
         // $data = file_get_contents('php://input');
         // $decodedData = json_decode($data, true);
@@ -102,39 +102,39 @@ class BotMessageContoller extends Controller
 
         // return $webhookData->json();
 
-        $data = file_get_contents('php://input');
-        // $logFile = '/var/www/Orion/app/Http/Controllers/API/webHookData.json';
-        // $log = fopen($logFile, 'a');
-        // fwrite($log, $data);
-        // fclose($log);
+        $data = $request->getContent();
+        $logFile = storage_path('app/webHookData.json');
+        file_put_contents($logFile, $data.PHP_EOL, FILE_APPEND);
 
-        $getData = json_decode($data, true);
-        $userID = $getData['message']['from']['id'];
-        $userMessage = $getData['message']['text'];
+        return $data;
 
-        if ($userMessage == '/start' || $userMessage == 'Hello') {
-            $botMessage = "Welcome Dawg!🚀";
-        } else {
-            $botMessage = "Hoops 🤔 you are not subscribed to this bot!";
-        }
+        // $getData = json_decode($data, true);
+        // $userID = $getData['message']['from']['id'];
+        // $userMessage = $getData['message']['text'];
 
-        $params = array(
-            "chat_id" => $userID,
-            "text" => $botMessage,
-            "parse_mode" => 'html'
-        );
+        // if ($userMessage == '/start' || $userMessage == 'Hello') {
+        //     $botMessage = "Welcome Dawg!🚀";
+        // } else {
+        //     $botMessage = "Hoops 🤔 you are not subscribed to this bot!";
+        // }
 
-        $api = "https://api.telegram.org/bot{$BOT_TOKEN}/sendMessage";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $api);
-        curl_setopt($ch, CURLOPT_POST, count($params));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $params = array(
+        //     "chat_id" => $userID,
+        //     "text" => $botMessage,
+        //     "parse_mode" => 'html'
+        // );
 
-        $result = curl_exec($ch);
-        curl_close($ch);
+        // $api = "https://api.telegram.org/bot{$BOT_TOKEN}/sendMessage";
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $api);
+        // curl_setopt($ch, CURLOPT_POST, count($params));
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        echo $result;
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+
+        // echo $result;
     }
 
     public function fetchWebhookData()
