@@ -51,7 +51,7 @@ class BotMessageContoller extends Controller
     {
         $BOT_TOKEN = env('TELEGRAM_TOKEN');
         
-        $webHookURL = "https://coded.vantagehorizon.com/";
+        $webHookURL = "https://perpscanner.com/api/set/webhook";
 
         $api = "https://api.telegram.org/bot{$BOT_TOKEN}/setWebhook?url={$webHookURL}";
 

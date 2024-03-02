@@ -32,4 +32,6 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/get/webhook', [BotMessageContoller::class, 'getWebhookInfo']); //Get Webhook Status
 
     Route::get('/set/webhook', [BotMessageContoller::class, 'setWebhook']);
+
+    Route::get('/set/webhook/data', [BotMessageContoller::class, 'setWebhookData']);
 });
