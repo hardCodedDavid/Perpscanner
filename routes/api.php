@@ -33,5 +33,5 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::get('/set/webhook', [BotMessageContoller::class, 'setWebhook']);
 
-    Route::get('/set/webhook/data', [BotMessageContoller::class, 'setWebhookData']);
+    Route::post('/set/webhook/data', [BotMessageContoller::class, 'setWebhookData']);
 });
