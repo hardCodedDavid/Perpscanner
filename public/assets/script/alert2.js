@@ -480,13 +480,21 @@ async function getTelegramId(alertData) {
 
 
 $(document).ready(function() {
-    render_alerts();
+    // render_alerts();
     render_history();
     setInterval(render_history, 1000);
     
     Object.entries(ALIAS_SCREENER).forEach(([key, value]) => {
       $('#availableVariables').append(`
         <li class="list-group-item">${value}</li>
+      `);
+
+      $('#condition_statement').append(`
+        <option value="${value}">${value}</option>
+      `);
+
+      $('#conditions_statement').append(`
+        <option value="${value}">${value}</option>
       `);
     })
     
@@ -503,6 +511,10 @@ $(document).ready(function() {
       autocomplete(condition[0], columns.concat(["symbol", ">", "<", "=", "and", "or"]));
       autocomplete(message[0], columns.concat(["symbol"]).map(i => '{' + i + '}'));
     });
+
+    $(document).on('click', '.closeAlert', function() {
+      $(this).parent().parent().prop('disabled', true);
+    });
     
 
     $(document).on('submit', '.saveAlert', function() {
@@ -514,9 +526,11 @@ $(document).ready(function() {
 
     $(document).on('change', '.soundAlert', function() {
         if(this.checked) {
+          $(this).prop('value', 1);
           $(this).parent().next('.soundAlertShow').show();
         } else {
           $(this).parent().next('.soundAlertShow').hide();
+          $(this).prop('value', 0);
         }
     });
 
@@ -525,7 +539,7 @@ $(document).ready(function() {
         $(this).prop('value', 1);
         Notification.requestPermission()
       } else {
-        $(this).prop('value', '');
+        $(this).prop('value', 0);
       }
     });
 
@@ -533,7 +547,7 @@ $(document).ready(function() {
       if(this.checked) {
         $(this).prop('value', 1);
       } else {
-        $(this).prop('value', '');
+        $(this).prop('value', 0);
       }
     });
 

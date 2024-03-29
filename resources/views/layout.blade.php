@@ -8,6 +8,34 @@
     
     @yield('style')
 
+    <link rel="stylesheet" href="https://lotsize.io/custom.css">
+    <link rel="shortcut icon" href="{{ asset('assets/img/fav.png') }}" type="image/x-icon">
+    <style>
+        .bg-image {
+            background-image: url('../assets/img/background.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Geologica', Courier, monospace;
+        }
+        .cus-btn {
+            color: black;
+            background: #1adb81;
+            border: 1px solid #1adb81;
+            border-radius: 10px;
+            padding: 7px 40px;
+        }
+        .form-input, .form-input:focus {
+            background: #343434fa;
+            border: 1px solid #343434fa;
+        }
+        .link-text {
+            text-decoration: none;
+            color: #1adb81;
+            font-weight: 600;
+        }
+    </style>
+
     @yield('script')
     
     <nav class="navbar navbar-expand-lg navbar-light" style="height: 58px; border-bottom: var(--divsep); white-space: nowrap;">

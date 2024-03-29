@@ -77,15 +77,16 @@ table.table-coin tr {
     font-family: 'Roboto mono', sans-serif !important;
     font-size: 14px;
     font-weight: 500;
-    background-color: var(--bg) !important;
-
+    /* background-color: var(--bg) !important; */
+    background-color: transparent !important;
     line-height: 16px;
     white-space: nowrap;
     overflow: hidden;
 }
 
 table.table-coin tr:nth-child(even) {
-    background-color: #090909 !important;
+    /* background-color: #090909 !important; */
+    background-color: transparent !important;
 }
 
 
@@ -104,7 +105,8 @@ td {
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #302330;
+    /* background-color: #302330; */
+    background-color: transparent !important;
     color: var(--textcolor);
 }
 

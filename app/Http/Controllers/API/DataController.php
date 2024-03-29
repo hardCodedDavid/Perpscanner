@@ -11,7 +11,7 @@ class DataController extends Controller
     public function info()
     {
         try {
-            $response = Http::get('https://data.orionterminal.com/api/info', [
+            $response = Http::get(env('INFO_API_URL'), [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
@@ -33,7 +33,7 @@ class DataController extends Controller
     public function screener()
     {
         try {
-            $response = Http::get('https://data.orionterminal.com/api/screener', [
+            $response = Http::get(env('SCREENER_API_URL'), [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
@@ -55,7 +55,7 @@ class DataController extends Controller
     public function marketData()
     {
         try {
-            $response = Http::get('https://data.orionterminal.com/api/market_data', [
+            $response = Http::get(env('SERVER_URL') + '/api/market_data', [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
@@ -77,7 +77,7 @@ class DataController extends Controller
     public function candles()
     {
         try {
-            $response = Http::get('https://data.orionterminal.com/api/candles?timeframe=1m&limit=140', [
+            $response = Http::get(env('SERVER_URL') + '/api/candles?timeframe=1m&limit=140', [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
@@ -99,7 +99,7 @@ class DataController extends Controller
     public function wsScreener()
     {
         try {
-            $response = Http::get('https://data.orionterminal.com/api/screener', [
+            $response = Http::get(env('SCREENER_API_URL'), [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],

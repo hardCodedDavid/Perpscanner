@@ -283,9 +283,13 @@ function draw_table() {
     $('#screener-head').html('')
     columns.forEach(function(col, index) {
         $('#screener-head').append(`<th>${(col.charAt(0).toUpperCase() + col.slice(1)).replaceAll('_', ' ')}</th>`)
+        let render_function = Object.keys(render_functions).filter(key => col.startsWith(key))[0];
+        if (render_function === undefined) { render_function = "default" }
+
         column_defs.push({
-            render: render_functions[Object.keys(render_functions).filter(key => col.startsWith(key))[0]],
+            render: render_functions[render_function],
             defaultContent: "",
+            type: "custom",
             targets: [index]
         });
     });
@@ -303,6 +307,18 @@ function draw_table() {
 
         columnDefs: column_defs
     });
+    
+    $.fn.dataTable.ext.type.order['custom-asc'] = function (a, b) {
+        if (a[0] && !b[0]) { return -Infinity }
+        if (b[0] && !a[0]) { return Infinity }
+        return a[1] - b[1];
+    };
+
+    $.fn.dataTable.ext.type.order['custom-desc'] = function (a, b) {
+        if (a[0] && !b[0]) { return -Infinity }
+        if (b[0] && !a[0]) { return Infinity }
+        return b[1] - a[1];
+    };
 
     render_columns();
     update_table(true);
@@ -395,7 +411,7 @@ $(document).ready(function(){
     });
       
     function connect_screener() {
-        var ws = new WebSocket('wss://data.orionterminal.com/api/ws/screener');
+        var ws = new WebSocket(websocket_url);
       
         ws.onmessage = function(event) {
             let data = JSON.parse(event.data);

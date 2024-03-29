@@ -11,6 +11,9 @@
       gtag('js', new Date());
     
       gtag('config', 'G-9CYVGBD33S');
+
+      <?php echo 'var websocket_url = "' . env('WEBSOCKET_URL') . '";'; ?>
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,9 +72,9 @@
     </div>
     </div>
     </div>
-    <table id="coinTable" class="table table-hover table-coin text-muted bg-black" cellspacing="0" width="100%">
+    <table id="coinTable" class="table table-hover table-coin text-muted" style="background-color: #00000080;" cellspacing="0" width="100%">
     <thead>
-    <tr id="screener-head">
+    <tr id="screener-head" style="background-color: #121214 !important;">
     <th>Symbol</th>
     </tr>
     </thead>
