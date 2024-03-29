@@ -1,4 +1,4 @@
-name: Perpscanner (Staging) CI
+name: Perpscanner (Staging) CI 2
 
 on:
   push:
