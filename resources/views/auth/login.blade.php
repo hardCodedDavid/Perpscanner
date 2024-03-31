@@ -9,7 +9,7 @@
                 @csrf
                 <div class="col-12">
                     <h2 class="text-white">Welcome Dawg🎉</h2>
-                    <p class="text-muted">Sign in to continue</p>
+                    <p class="text-muted">Let's get started! Sign in to continue</p>
                 </div>
                 @if(Session::has('error'))
                     <div class="alert alert-danger text-white">
