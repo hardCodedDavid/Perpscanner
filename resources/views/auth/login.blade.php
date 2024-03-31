@@ -8,7 +8,7 @@
             <form class="row g-3 bg-dark mb-2 mt-1 text-muted rounded" method="POST" action="{{ route('login') }}" style="padding: 30px;">
                 @csrf
                 <div class="col-12">
-                    <h2 class="text-white">Welcome</h2>
+                    <h2 class="text-white">Welcome Dawg!🎉</h2>
                     <p class="text-muted">Sign in to continue</p>
                 </div>
                 @if(Session::has('error'))
