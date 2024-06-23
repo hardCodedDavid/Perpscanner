@@ -485,6 +485,6 @@
   <script src="{{ asset('accessories/js/amcharts.min.js') }}"></script>
   <script src="{{ asset('accessories/js/custom.js') }}"></script>
 
-  <!-- <script src="{{ asset('assets/script/track.js') }}"></script> -->
+  <script src="{{ asset('assets/script/track.js') }}"></script>
 </body>
 </html>
