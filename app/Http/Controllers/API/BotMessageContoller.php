@@ -63,7 +63,7 @@ class BotMessageContoller extends Controller
         if ($userMessage == '/start' || $userMessage == 'Hello') {
             $botMessage = "Connected✅";
         } else {
-            $botMessage = "Your telegram username not registered on Perpscanner.com. Please update your telegram username on Perpscanner.com and then start the bot.";
+            $botMessage = "Default Message goes here from (perpscanner.com)";
         }
         
         $params = [

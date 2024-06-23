@@ -15,21 +15,22 @@ function append_history(alert) {
 }
 
 function get_alerts() {
-    var alerts = localStorage.getItem('alerts');
+    // var alerts = localStorage.getItem('alerts');
+    var alerts = userAlerts;
 
-    if (alerts && JSON.parse(alerts).length > 0) {
-        return JSON.parse(alerts).map(alert => (
+    if (alerts && alerts.length > 0) {
+        return alerts.map(alert => (
             {
                 'id': alert.id, 
-                'alertName': alert.alertName, 
-                'browserAlert': alert.browserAlert, 
-                'telegramName': alert.telegramName, 
-                'telegramAlert': alert.telegramAlert, 
-                'screenerHighlight': alert.screenerHighlight, 
+                'alertName': alert.name, 
+                'browserAlert': alert.browser, 
+                'telegramName': alert.telegram_alert, 
+                'telegramAlert': alert.telegram_alert, 
+                'screenerHighlight': alert.highlight, 
                 'soundAlertFile': alert.soundAlertFile, 
-                'paused': alert.paused, 
-                'alertCondition': alert.alertCondition.replaceAll('stdev_', 'volatility_'), 
-                'alertMessage': alert.alertMessage.replaceAll('stdev_', 'volatility_'),
+                'paused': alert.status, 
+                'alertCondition': alert.condition.replaceAll('stdev_', 'volatility_'), 
+                'alertMessage': alert.message.replaceAll('stdev_', 'volatility_'),
             }
         ));
     }
@@ -168,7 +169,7 @@ function check_triggers() {
     var history = get_history();
     var alerts = get_alerts();
     alerts.forEach(function(alert) {
-        if (alert.paused != 1) {
+        if (alert.paused == 1) {
             Object.entries(coins).forEach(([symbol, data]) => {
                 var condition = alert.alertCondition.toLowerCase().replaceAll('symbol', symbol.split('-')[0]).replaceAll('and', '&&').replaceAll('or', '||');
                 var message = alert.alertMessage.replaceAll('{symbol}', symbol.split('-')[0]);
@@ -198,7 +199,7 @@ function check_triggers() {
 
 $(document).ready(function() {
     function connect_screener() {
-        var ws = new WebSocket('wss://data.orionterminal.com/api/ws/screener?interval=1.5');
+        var ws = new WebSocket(websocket_url + '?interval=1.5');
       
         ws.onmessage = function(event) {
             let data = JSON.parse(event.data);
@@ -223,6 +224,8 @@ $(document).ready(function() {
           ws.close();
         };
     }
+
+    $('#loader').hide();
 
     Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
         if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};

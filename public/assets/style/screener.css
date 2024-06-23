@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Overpass:300,400,600,700&amp;display=swap");
 #maindiv {
     overflow-x: auto !important;
     white-space: nowrap !important;
@@ -65,7 +66,7 @@
 }
 
 table.dataTable thead tr th.sorting_asc {
-    color: #991111;
+    color: #11b830;
 }
 
 table.dataTable thead tr th.sorting_desc {
@@ -74,18 +75,18 @@ table.dataTable thead tr th.sorting_desc {
 
 table.table-coin tr {
     color: var(--textcolor) !important;
-    font-family: 'Roboto mono', sans-serif !important;
-    font-size: 14px;
+    font-family: 'Overpass', sans-serif !important;
+    font-size: 18px;
     font-weight: 500;
-    background-color: var(--bg) !important;
-
-    line-height: 16px;
+    background-color: transparent !important;
+    line-height: 50px;
     white-space: nowrap;
     overflow: hidden;
 }
 
 table.table-coin tr:nth-child(even) {
-    background-color: #090909 !important;
+    /* background-color: #090909 !important; */
+    background-color: transparent !important;
 }
 
 
@@ -104,19 +105,38 @@ td {
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #302330;
+    /* background-color: #302330; */
+    background-color: transparent !important;
     color: var(--textcolor);
 }
 
-
+.table td {
+    font-size: 16px;
+    padding: 10px 18px;
+}
 
 .table td:first-child, .table th:first-child {
     position: -webkit-sticky;
-    position: sticky;
+    /* position: sticky; */
     left: 0;
     font-weight: bold;
     background-color: inherit;
 }
+
+.form-control::placeholder {
+    color: #adb5bd; /* Adjust this color as needed */
+    opacity: 1; /* Ensure the color is not transparent */
+  }
+  
+  .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #adb5bd;
+    font-family: 'Overpass', sans-serif;
+  }
+  
+  .form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: #adb5bd;
+    font-family: 'Overpass', sans-serif;
+  }
 
 
 

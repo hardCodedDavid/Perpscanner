@@ -8,9 +8,247 @@
     
     @yield('style')
 
+    <link rel="stylesheet" href="https://lotsize.io/custom.css">
+    <link rel="shortcut icon" href="{{ asset('assets/img/fav.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('accessories/css/style.css') }}">
+    <style>
+        .bg-image {
+            background-image: url('../assets/img/background.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Geologica', Courier, monospace;
+        }
+        .cus-btn {
+            color: black;
+            background: #1adb81;
+            border: 1px solid #1adb81;
+            border-radius: 10px;
+            padding: 7px 40px;
+        }
+        .form-input, .form-input:focus {
+            background: #343434fa;
+            border: 1px solid #343434fa;
+        }
+        .link-text {
+            text-decoration: none;
+            color: #1adb81;
+            font-weight: 600;
+        }
+    </style>
+
     @yield('script')
+
+    <style>
+      .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Ensure it's above other content */
+    }
+    .loader {
+      transform: scale(1); /* Enlarge the loader */
+    }
+
+      svg path,
+      svg rect{
+        fill: #11b830;
+      }
+    </style>
+    <div id="loader" class="loader-wrapper">
+      <div class="loader loader--style5" title="4">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="72px" height="90px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <rect x="0" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="10" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="20" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+        </svg>
+      </div>
+    </div>
+
+    <header class="dark-bb">
+      <nav class="navbar navbar-expand-lg">
+        <a class='navbar-brand' href="{{ route('home') }}"><img src="{{ asset('accessories/img/logo.png') }}" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu"
+          aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="icon ion-md-menu"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="headerMenu">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('screener') }}" role="button"
+                aria-expanded="false">
+                Screener
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('alert') }}" role="button"
+                aria-expanded="false">
+                Alert
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('screener') }}" role="button"
+                aria-expanded="false">
+                Charts
+              </a>
+            </li>
+
+          </ul>
+          <!-- <ul class="navbar-nav ml-auto">
+            <a class='btn-1' href='signin-dark.html'>Sign In</a>
+            <a class='btn-2' href='signup-dark.html'>Get Started</a>
+          </ul> -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item header-custom-icon">
+              <a class="nav-link" href="#" id="clickFullscreen">
+                <i class="icon ion-md-expand"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown header-custom-icon">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="icon ion-md-notifications"></i>
+                <span class="circle-pulse"></span>
+              </a>
+              <div class="dropdown-menu">
+                <div class="dropdown-header d-flex align-items-center justify-content-between">
+                  <p class="mb-0 font-weight-medium">6 New Notifications</p>
+                  <a href="#!" class="text-muted">Clear all</a>
+                </div>
+                <div class="dropdown-body">
+                  <a href="#!" class="dropdown-item">
+                    <div class="icon">
+                      <i class="icon ion-md-lock"></i>
+                    </div>
+                    <div class="content">
+                      <p>Account password change</p>
+                      <p class="sub-text text-muted">5 sec ago</p>
+                    </div>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <div class="icon">
+                      <i class="icon ion-md-alert"></i>
+                    </div>
+                    <div class="content">
+                      <p>Solve the security issue</p>
+                      <p class="sub-text text-muted">10 min ago</p>
+                    </div>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <div class="icon">
+                      <i class="icon ion-logo-android"></i>
+                    </div>
+                    <div class="content">
+                      <p>Download android app</p>
+                      <p class="sub-text text-muted">1 hrs ago</p>
+                    </div>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <div class="icon">
+                      <i class="icon ion-logo-bitcoin"></i>
+                    </div>
+                    <div class="content">
+                      <p>Bitcoin price is high now</p>
+                      <p class="sub-text text-muted">2 hrs ago</p>
+                    </div>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <div class="icon">
+                      <i class="icon ion-logo-usd"></i>
+                    </div>
+                    <div class="content">
+                      <p>Payment completed</p>
+                      <p class="sub-text text-muted">4 hrs ago</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                  <a href="#!">View all</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown header-img-icon">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img src="{{ asset('accessories/img/avatar.png') }}" alt="avatar">
+              </a>
+              <div class="dropdown-menu">
+                <div class="dropdown-header d-flex flex-column align-items-center">
+                  <div class="figure mb-3">
+                    <img src="{{ asset('accessories/img/avatar.png') }}" alt="">
+                  </div>
+                  <div class="info text-center">
+                    <p class="name font-weight-bold mb-0">Tony Stark</p>
+                    <p class="email text-muted mb-3">tonystark@gmail.com</p>
+                  </div>
+                </div>
+                <div class="dropdown-body">
+                  <ul class="profile-nav">
+                    <li class="nav-item">
+                      <a class='nav-link' href='settings-profile-light.html'>
+                        <i class="icon ion-md-person"></i>
+                        <span>Profile</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class='nav-link' href='settings-wallet-light.html'>
+                        <i class="icon ion-md-wallet"></i>
+                        <span>My Wallet</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class='nav-link' href='settings-light.html'>
+                        <i class="icon ion-md-settings"></i>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" id="changeThemeLight">
+                      <a href="#!" class="nav-link">
+                        <i class="icon ion-md-sunny"></i>
+                        <span>Theme</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <form action="{{ route('logout') }}" method="post">
+                        @csrf 
+                        <button class='nav-link red' type="submit">
+                          <i class="icon ion-md-power"></i>
+                          <span>Log Out</span>
+                        </button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     
-    <nav class="navbar navbar-expand-lg navbar-light" style="height: 58px; border-bottom: var(--divsep); white-space: nowrap;">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="height: 58px; border-bottom: var(--divsep); white-space: nowrap;">
     <div style="left: 16px; position: absolute;">
     <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 30px; color: var(--textcolor);margin-right: 20px;">Perpscanner <br> <span style="font-size: 10px;float: inline-end; letter-spacing: 6;"> by CRYPTO.ERKE </span></a>
     <a class="navbar-brand logo" href="{{ route('screener') }}" style="font-size: 16px; color: var(--textcolor); margin-left: -8px;"></a>
@@ -18,7 +256,7 @@
     <div style="float: left; margin-left: 220px; position: absolute;">
     <a href="{{ route('screener') }}" class="navbar-link">Screener</a>
     <a href="{{ route('alert') }}" class="navbar-link">Alerts</a>
-    <a href="{{ route('overview') }}" class="navbar-link">Charts</a>
+    <a href="{{ route('overview') }}" class="navbar-link">Charts</a> -->
     <!-- <a onclick="window.open('https://docs.orionterminal.com/')" href="#" class="navbar-link">CLI</a> -->
     <!-- <b style="position: relative; right: 20px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">&nbsp;NEW&nbsp;</b>
     <a onclick="window.open('https://discord.com/invite/ffw7SyBW4w')" href="#" class="navbar-link">Discord</a>
@@ -26,8 +264,8 @@
     
     <!-- <a class="navbar-link" item_category="reflink" style="color: #f0b90b;" href="#" onclick="window.open('https://partner.bybit.com/b/orionterminal')">Trade on Bybit</a>
     <b style="position: relative; right: 72px; top: -16px; margin-right: -32px; font-size: 12px; background-color: #536900;">10% OFF FEES</b> -->
-    </div>
-    <div style="position: absolute; right: 0; height: 100%; background-color: var(--bg);">
+    <!-- </div> -->
+    <!-- <div style="position: absolute; right: 0; height: 100%; background-color: var(--bg);">
     <div style="margin-top: 12px; margin-left: 16px;">
     <div style="float: left; margin-top: 2px;">
     <svg onClick="$('#screenerSettings').show(); return false;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16" style="float: right; margin-top: 2px;">
@@ -49,7 +287,7 @@
     </div>
     </div>
     </div>
-    </nav>
+    </nav> -->
     <div id="filters" style="display: none; border: var(--divsep); position: absolute; z-index: 2; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background-color: var(--bg); width: 50%; height: 40%; border-radius: 8px;">
     <div style="float: left; height: 100%; width: 22%; border-right: var(--divsep); padding: 1px;">
     <select multiple id="filters-list" style="width: 100%; height: 100%; background-color: var(--bg); color: var(--textcolor); padding: 0; overflow-x: hidden; overflow-y: auto;">
@@ -238,7 +476,12 @@
 @yield('content')
 
 
-
+<!-- <script src="{{ asset('accessories/js/jquery-3.4.1.min.js') }}"></script> -->
+  <script src="{{ asset('accessories/js/popper.min.js') }}"></script>
+  <script src="{{ asset('accessories/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('accessories/js/amcharts-core.min.js') }}"></script>
+  <script src="{{ asset('accessories/js/amcharts.min.js') }}"></script>
+  <script src="{{ asset('accessories/js/custom.js') }}"></script>
 
 
 </body>

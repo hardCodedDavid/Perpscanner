@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\BotMessageContoller;
 use App\Http\Controllers\API\DataController;
+use App\Http\Controllers\User\AlertController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,4 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/set/webhook/data', [BotMessageContoller::class, 'setWebhookData']);
 
     Route::get('/check/username', [BotMessageContoller::class, 'checkUsername']); //Get Username Status
-
 });

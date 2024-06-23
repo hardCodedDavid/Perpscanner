@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400'); */
+@import url("http://fonts.googleapis.com/css?family=Overpass:300,400,600,700&amp;display=swap");
 
 :root {
     --divsep: 1px solid#111111;
@@ -6,11 +7,17 @@
     --bg: #000000;
 }
 
-html,body { 
-    height: 100%;
+body { 
+    font-family: 'Overpass', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
     background-color: var(--bg);
     color: var(--textcolor);
     overflow: hidden;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 
 .logo {
@@ -30,7 +37,7 @@ a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
 a, b {
-    font-family: 'Roboto mono', sans-serif !important;
+    font-family: 'Overpass', sans-serif !important;
 }
 
 
@@ -51,7 +58,7 @@ a, b {
     font-size: 16px; 
     color: var(--textcolor); 
     font-weight: bold;
-    font-family: 'Roboto mono', sans-serif; 
+    font-family: 'Overpass', sans-serif; 
     margin-left: 100px;
 }
 
@@ -191,4 +198,13 @@ input, label {
 
 .separator:not(:empty)::after {
     margin-left: .25em;
+}
+
+.badges {
+    background-color: #cda150;
+    padding: 3px 8px;
+    color:  #111111;
+    font-size: 12px;
+    border: 0px;
+    border-radius: 8px;
 }
