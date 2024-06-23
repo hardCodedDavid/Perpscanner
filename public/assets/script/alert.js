@@ -225,6 +225,8 @@ $(document).ready(function() {
         };
     }
 
+    $('#loader').hide();
+
     Object.entries(SCREENER_DATA).forEach(([symbol, data]) => {
         if (!(symbol in coins)) {coins[symbol] = {}; Object.values(ALIAS_SCREENER).forEach(k => {coins[symbol][k] = undefined;})};
         Object.entries(to_alias(data, ALIAS_SCREENER)).forEach(([key, value]) => {

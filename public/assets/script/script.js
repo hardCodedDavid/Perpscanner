@@ -23,9 +23,9 @@ var render_functions = {
         }
         
 
-        return `<div style="width: 170px;" id="${data}" class="symbol-row">
+        return `<div style="width: 190px; display: flex; justify-content: center; align-items: center;" id="${data}" class="symbol-row">
                 
-                <svg id="${data}-inactive" style="float: left; ${(active_chart == data) ? 'display: none;' : ''}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <svg id="${data}-inactive" style="display: none; float: left; ${(active_chart == data) ? 'display: none;' : ''}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                 </svg>
                 
@@ -35,7 +35,7 @@ var render_functions = {
                     </svg>
                 </div>
 
-                <div style="float: left; margin-left: 4px; width: 20px; height: 20px;" class="icon-${coin}" loading="lazy"> </div>
+                <div style="float: left; margin-left: 4px; width: 30px; height: 30px;" class="icon-${coin}" loading="lazy"> </div>
 
                 <div style="float: left">
                     &nbsp;${data.split('-')[0]}
@@ -329,6 +329,8 @@ $(document).ready(function(){
     $('#filter-button').show();
 
     draw_table();
+
+    $('#loader').hide();
 
     $(document).on('click', '.symbol-row', function() {
         let symbol = this.id.split('-')[0];

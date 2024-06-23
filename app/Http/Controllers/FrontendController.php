@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Http;
 
 class FrontendController extends Controller
 {
+    public function landing() {
+        $user = auth()->user();
+
+        return view('landing', ['user' => $user]);
+    }
+
     public function alert() {
         $alerts = auth()->user()->alerts()->latest();
 

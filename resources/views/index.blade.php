@@ -72,17 +72,58 @@
     </div>
     </div>
     </div>
-    <table id="coinTable" class="table table-hover table-coin text-muted" style="background-color: #00000080;" cellspacing="0" width="100%">
-    <thead>
-    <tr id="screener-head" style="background-color: #121214 !important;">
-    <th>Symbol</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    </table>
-    <div id="tv-chart-container">
-    <div id="tv-chart"></div>
+    <div style="max-width: 1000px; display: flex !important; justify-content: space-between; align-items: center; margin: 20px auto; padding: 15px 30px; background: rgb(33, 37, 41); border-radius: 15px;">
+      <div style="width: 80%;">
+        <input type="text" class="form-control" id="searchInput" style="color: #adb5bd; background-color: #3f3f3f; border: 0px !important; border-radius: 30px;" placeholder="Search Coin..." aria-label="Enter Coin Name"
+        aria-describedby="button-addon2">
+      </div>
+      <div style="background: #343030; padding: 12px; border-radius: 200px; border: 1px solid green; cursor: pointer;">
+        <svg onClick="$('#screenerSettings').show(); return false;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16" style="float: right; margin-top: 2px;">
+          <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+          <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+        </svg>
+      </div>
+    </div>
+    <div> 
+      <table id="coinTable" class="table table-hover table-coin text-muted" style="max-width: 700px; background-color: #00000080;" cellspacing="0" width="100%">
+        <thead>
+          <tr id="screener-head" style="background-color: #121214 !important; line-height: 30px !important;">
+            <th>Symbol</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- Content goes here -->
+        </tbody>
+      </table>
+
+      <div id="tv-chart-container">
+        <div id="tv-chart">
+
+        </div>
+      </div>
     </div>
     </div>
+
+    <script>
+      document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        table = document.getElementById('coinTable');
+        tr = table.getElementsByTagName('tr');
+
+        for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+          td = tr[i].getElementsByTagName('td')[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      });
+    </script>
+    <!-- <script src="{{ asset('assets/script/track.js') }}"></script> -->
 @endsection

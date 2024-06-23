@@ -21,6 +21,8 @@ use App\Http\Controllers\EmailverificationController;
 
 Auth::routes(['verify' => true]);
 
+Route::get('/', [FrontendController::class, 'landing'])->name('home');
+
 // Route::group(['middleware' => ['auth', 'unverified']], function (){
     // Route::get('/email/verify', [EmailverificationController::class, 'verify'])->name('verification.notice');
     Route::post('/email/verify-with-code', [EmailverificationController::class, 'verifyWithCode'])->name('verification.verify.code');
@@ -29,8 +31,8 @@ Auth::routes(['verify' => true]);
 // });
 
 Route::group(['middleware' => ['auth','verified']], function (){
-    Route::get('/text', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/', [FrontendController::class, 'screener'])->name('screener');
+    Route::get('/text', [App\Http\Controllers\HomeController::class, 'index'])->name('test');
+    Route::get('/screener', [FrontendController::class, 'screener'])->name('screener');
     Route::get('/alert', [FrontendController::class, 'alert'])->name('alert');
     Route::get('/overview', [FrontendController::class, 'overview'])->name('overview');
     Route::get('/user/alert', [FrontendController::class, 'user_alert'])->name('user.lert');

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400'); */
+@import url("http://fonts.googleapis.com/css?family=Overpass:300,400,600,700&amp;display=swap");
 
 :root {
     --divsep: 1px solid#111111;
@@ -6,8 +7,10 @@
     --bg: #000000;
 }
 
-html,body { 
-    /* height: 100%; */
+body { 
+    font-family: 'Overpass', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
     background-color: var(--bg);
     color: var(--textcolor);
     overflow: hidden;
@@ -34,7 +37,7 @@ a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
 a, b {
-    font-family: 'Roboto mono', sans-serif !important;
+    font-family: 'Overpass', sans-serif !important;
 }
 
 
@@ -55,7 +58,7 @@ a, b {
     font-size: 16px; 
     color: var(--textcolor); 
     font-weight: bold;
-    font-family: 'Roboto mono', sans-serif; 
+    font-family: 'Overpass', sans-serif; 
     margin-left: 100px;
 }
 
